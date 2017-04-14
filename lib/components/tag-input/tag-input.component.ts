@@ -62,8 +62,7 @@ export interface AutoCompleteItem {
   styles: [`
     :host {
       display: block;
-      box-shadow: 0 1px #ccc;
-      padding: 8px 0 6px 0;
+      border-bottom: 1px solid #9a9a9a;
       will-change: box-shadow;
       transition: box-shadow 0.12s ease-out;
     }
@@ -90,7 +89,9 @@ export interface AutoCompleteItem {
     }
 
     :host.ng2-tag-input-focus {
-      box-shadow: 0 2px #0d8bff;
+      border-bottom: 1px solid #007cbb;
+      -webkit-transition: background-size 0.2s ease;
+      transition: background-size 0.2s ease;
     }
   `],
   providers: [
