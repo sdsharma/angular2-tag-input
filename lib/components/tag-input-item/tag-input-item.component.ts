@@ -14,17 +14,17 @@ import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/co
       display: inline-block;
       border-width: 1px;
       border-style: solid;
-      border-color: rgb(0, 74, 112);
+      border-color: #007cbb;
       border-image: initial;
       padding: 0 12px;
       border-radius: 90px;
       margin-right: 10px;
-      margin-botton: 3px;
+      margin-bottom: 3px;
       transition: all 0.12s ease-out;
     }
 
      :host .ng2-tag-input-remove {
-      background:  rgb(0, 74, 112);
+      background: #007cbb;
       border-radius: 50%;
       color: #fff;
       cursor: pointer;
