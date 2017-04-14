@@ -21,8 +21,6 @@ import { KEYS } from '../../shared/tag-input-keys';
       display: block;
       position: absolute;
       top: 100%;
-      font-family: "Roboto", "Helvetica Neue", sans-serif;
-      font-size: 16px;
       color: #444444;
       background: white;
       padding: 8px 0;

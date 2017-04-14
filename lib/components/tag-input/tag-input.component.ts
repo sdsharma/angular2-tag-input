@@ -61,8 +61,6 @@ export interface AutoCompleteItem {
   `,
   styles: [`
     :host {
-      font-family: "Roboto", "Helvetica Neue", sans-serif;
-      font-size: 16px;
       display: block;
       box-shadow: 0 1px #ccc;
       padding: 8px 0 6px 0;
@@ -75,8 +73,6 @@ export interface AutoCompleteItem {
     }
 
      :host .ng2-tag-input-field {
-      font-family: "Roboto", "Helvetica Neue", sans-serif;
-      font-size: 16px;
       display: inline-block;
       width: auto;
       box-shadow: none;
