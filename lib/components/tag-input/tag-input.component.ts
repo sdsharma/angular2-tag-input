@@ -90,6 +90,8 @@ export interface AutoCompleteItem {
 
     :host.ng2-tag-input-focus {
       border-bottom: 1px solid #007cbb;
+      background: -webkit-linear-gradient(top, transparent 95%, #007cbb 95%);
+      background: linear-gradient(to bottom, transparent 95%, #007cbb 95%);
       -webkit-transition: background-size 0.2s ease;
       transition: background-size 0.2s ease;
     }
