@@ -77,7 +77,7 @@ export interface AutoCompleteItem {
       box-shadow: none;
       border: 0;
       padding: 0px 6px;
-      padding-right: 28px;
+      padding-right: 136px;
       border-bottom: 1px solid #9a9a9a;
     }
 
