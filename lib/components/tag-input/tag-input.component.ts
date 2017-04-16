@@ -62,7 +62,6 @@ export interface AutoCompleteItem {
   styles: [`
     :host {
       display: block;
-      border-bottom: 1px solid #9a9a9a;
       will-change: box-shadow;
       transition: box-shadow 0.12s ease-out;
     }
@@ -72,15 +71,19 @@ export interface AutoCompleteItem {
     }
 
      :host .ng2-tag-input-field {
+      font-size: 13px;
       display: inline-block;
       width: auto;
       box-shadow: none;
       border: 0;
-      padding: 8px 0;
+      padding: 0px 6px;
+      padding-right: 28px;
+      border-bottom: 1px solid #9a9a9a;
     }
 
      :host .ng2-tag-input-field:focus {
       outline: 0;
+      border-bottom: 1px solid #9a9a9a;
     }
 
      :host .rl-tag-input-autocomplete-container {
@@ -89,12 +92,8 @@ export interface AutoCompleteItem {
     }
 
     :host.ng2-tag-input-focus {
-      border-bottom: 1px solid #007cbb;
-      background: -webkit-linear-gradient(top, transparent 95%, #007cbb 95%);
-      background: linear-gradient(to bottom, transparent 95%, #007cbb 95%);
-      -webkit-transition: background-size 0.2s ease;
-      transition: background-size 0.2s ease;
     }
+
   `],
   providers: [
     {provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => TagInputComponent), multi: true},

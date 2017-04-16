@@ -10,7 +10,7 @@ import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/co
   `,
   styles: [`
     :host {
-      line-height: 32px;
+      line-height: 24px;
       display: inline-block;
       border-width: 1px;
       border-style: solid;
@@ -39,12 +39,12 @@ import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/co
 
     :host.ng2-tag-input-item-selected {
       color: white;
-      background: #0d8bff;
+      background: #007cbb;
     }
 
      :host.ng2-tag-input-item-selected .ng2-tag-input-remove {
       background: white;
-      color: #0d8bff;
+      color: #007cbb;
     }
   `]
 })
