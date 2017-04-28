@@ -23,7 +23,7 @@ import { KEYS } from '../../shared/tag-input-keys';
       top: 100%;
       color: #444444;
       background: white;
-      padding: 8px 0;
+      padding: 0 0;
     }
 
      :host .rl-autocomplete-item {

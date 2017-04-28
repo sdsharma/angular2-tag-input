@@ -77,13 +77,13 @@ export interface AutoCompleteItem {
       box-shadow: none;
       border: 0;
       padding: 0px 6px;
-      padding-right: 136px;
+      padding-right: 142px;
       border-bottom: 1px solid #9a9a9a;
     }
 
      :host .ng2-tag-input-field:focus {
       outline: 0;
-      border-bottom: 1px solid #9a9a9a;
+      border-bottom: 1px solid #0094d2;
     }
 
      :host .rl-tag-input-autocomplete-container {
