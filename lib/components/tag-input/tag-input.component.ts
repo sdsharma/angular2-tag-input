@@ -242,8 +242,7 @@ export class TagInputComponent implements ControlValueAccessor, OnDestroy, OnIni
   }
 
   private _isValid(tagIndex: number): boolean {
-    let valid = (this.invalidEntries.indexOf(tagIndex) > -1) ? false : true;
-    return valid;
+    return (this.invalidEntries.indexOf(tagIndex) > -1) ? false : true;
   }
 
   private _splitString(tagString: string): string[] {
