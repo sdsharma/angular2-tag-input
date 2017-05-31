@@ -34,6 +34,7 @@ export interface AutoCompleteItem {
       [text]="tag"
       [index]="index"
       [selected]="selectedTag === index"
+      [valid]="_isValid(index)"
       (tagRemoved)="_removeTag($event)"
       *ngFor="let tag of tagsList; let index = index">
     </rl-tag-input-item>
@@ -96,7 +97,7 @@ export interface AutoCompleteItem {
 
   `],
   providers: [
-    {provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => TagInputComponent), multi: true},
+    { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => TagInputComponent), multi: true },
   ]
 })
 export class TagInputComponent implements ControlValueAccessor, OnDestroy, OnInit {
@@ -114,6 +115,7 @@ export class TagInputComponent implements ControlValueAccessor, OnDestroy, OnIni
   @Input() autocompleteSelectFirstItem: boolean = true;
   @Input() pasteSplitPattern: string = ',';
   @Input() placeholder: string = 'Add a tag';
+  @Input() invalidEntries: number[] = [];
   @Output('addTag') addTag: EventEmitter<string> = new EventEmitter<string>();
   @Output('removeTag') removeTag: EventEmitter<string> = new EventEmitter<string>();
   @ViewChild('tagInputElement') tagInputElement: ElementRef;
@@ -145,7 +147,7 @@ export class TagInputComponent implements ControlValueAccessor, OnDestroy, OnIni
 
   constructor(
     private fb: FormBuilder,
-    private elementRef: ElementRef) {}
+    private elementRef: ElementRef) { }
 
   ngOnInit() {
     this.splitRegExp = new RegExp(this.pasteSplitPattern);
@@ -155,16 +157,16 @@ export class TagInputComponent implements ControlValueAccessor, OnDestroy, OnIni
     });
 
     this.tagInputSubscription = this.tagInputField.valueChanges
-    .do(value => {
-      this.autocompleteResults = this.autocompleteItems.filter(item => {
-        /**
-         * _isTagUnique makes sure to remove items from the autocompelte dropdown if they have
-         * already been added to the model, and allowDuplicates is false
-         */
-        return item.toLowerCase().indexOf(value.toLowerCase()) > -1 && this._isTagUnique(item);
-      });
-    })
-    .subscribe();
+      .do(value => {
+        this.autocompleteResults = this.autocompleteItems.filter(item => {
+          /**
+           * _isTagUnique makes sure to remove items from the autocompelte dropdown if they have
+           * already been added to the model, and allowDuplicates is false
+           */
+          return item.toLowerCase().indexOf(value.toLowerCase()) > -1 && this._isTagUnique(item);
+        });
+      })
+      .subscribe();
   }
 
   onKeydown(event: KeyboardEvent): void {
@@ -239,6 +241,11 @@ export class TagInputComponent implements ControlValueAccessor, OnDestroy, OnIni
     );
   }
 
+  private _isValid(tagIndex: number): boolean {
+    let valid = (this.invalidEntries.indexOf(tagIndex) > -1) ? false : true;
+    return valid;
+  }
+
   private _splitString(tagString: string): string[] {
     tagString = tagString.trim();
     let tags = tagString.split(this.splitRegExp);
@@ -247,7 +254,7 @@ export class TagInputComponent implements ControlValueAccessor, OnDestroy, OnIni
 
   private _isTagValid(tagString: string): boolean {
     return this.allowedTagsPattern.test(tagString) &&
-           this._isTagUnique(tagString);
+      this._isTagUnique(tagString);
   }
 
   private _isTagUnique(tagString: string): boolean {
@@ -268,9 +275,9 @@ export class TagInputComponent implements ControlValueAccessor, OnDestroy, OnIni
 
   private _addTags(tags: string[]): void {
     let validTags = tags.map(tag => tag.trim())
-                        .filter(tag => this._isTagValid(tag))
-                        .filter((tag, index, tagArray) => tagArray.indexOf(tag) === index)
-                        .filter(tag => (this.showAutocomplete() && this.autocompleteMustMatch) ? this._isTagAutocompleteItem(tag) : true);
+      .filter(tag => this._isTagValid(tag))
+      .filter((tag, index, tagArray) => tagArray.indexOf(tag) === index)
+      .filter(tag => (this.showAutocomplete() && this.autocompleteMustMatch) ? this._isTagAutocompleteItem(tag) : true);
 
     this.tagsList = this.tagsList.concat(validTags);
     this._resetSelected();

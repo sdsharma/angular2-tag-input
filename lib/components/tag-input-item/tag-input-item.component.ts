@@ -14,13 +14,21 @@ import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/co
       display: inline-block;
       border-width: 1px;
       border-style: solid;
-      border-color: #007cbb;
       border-image: initial;
+      border-color: #007cbb;
       padding: 0 12px;
       border-radius: 90px;
       margin-right: 10px;
       margin-bottom: 3px;
       transition: all 0.12s ease-out;
+    }
+
+    :host.invalid-entry {
+      border-color: #F52F22;
+    }
+
+    :host.invalid-entry > span {
+      background: #F52F22;
     }
 
      :host .ng2-tag-input-remove {
@@ -40,6 +48,7 @@ import { Component, EventEmitter, HostBinding, Input, Output } from '@angular/co
     :host.ng2-tag-input-item-selected {
       color: white;
       background: #007cbb;
+      border-color: #007cbb;
     }
 
      :host.ng2-tag-input-item-selected .ng2-tag-input-remove {
@@ -52,8 +61,10 @@ export class TagInputItemComponent {
   @Input() selected: boolean;
   @Input() text: string;
   @Input() index: number;
+  @Input() valid: boolean;
   @Output() tagRemoved: EventEmitter<number> = new EventEmitter<number>();
   @HostBinding('class.ng2-tag-input-item-selected') get isSelected() { return !!this.selected; }
+  @HostBinding('class.invalid-entry') get isInvalid() { return !!!this.valid; };
 
   constructor() { }
 
