@@ -1,6 +1,6 @@
 {
   "name": "angular2-tag-input-clarity",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Tag input component for Angular 2 using VMware Clarity Styling",
   "main": "dist/index.js",
   "keywords": [
